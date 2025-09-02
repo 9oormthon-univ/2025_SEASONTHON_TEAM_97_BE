@@ -35,6 +35,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA 관련 기능 포함
 	runtimeOnly 'com.h2database:h2' // H2 데이터베이스 드라이버
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // OAuth2 클라이언트 기능 포함
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
 }
 
 tasks.named('test') {
