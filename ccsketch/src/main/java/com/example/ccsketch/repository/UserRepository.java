@@ -1,9 +1,11 @@
 package com.example.ccsketch.repository;
 
-import com.example.ccsketch.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.ccsketch.domain.User;
+
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email); // 이메일로 사용자를 찾는 메소드
+    Optional<User> findByLoginId(String loginId); // 이 메소드로 변경 또는 추가
 }

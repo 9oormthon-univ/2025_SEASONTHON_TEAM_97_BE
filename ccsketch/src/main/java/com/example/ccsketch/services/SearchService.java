@@ -1,4 +1,4 @@
-package com.example.ccsketch.Service;
+package com.example.ccsketch.services;
 
 import org.springframework.stereotype.Service;
 
