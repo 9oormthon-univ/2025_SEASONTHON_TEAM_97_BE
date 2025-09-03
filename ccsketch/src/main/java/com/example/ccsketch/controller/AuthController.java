@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ccsketch.DTO.ApiResponseDto;
+import com.example.ccsketch.DTO.LoginRequestDto;
+import com.example.ccsketch.DTO.LoginResponseDto;
 import com.example.ccsketch.DTO.SignUpRequestDto;
 import com.example.ccsketch.services.UserService;
 
@@ -27,5 +29,12 @@ public class AuthController { // 클래스 분리 추천
     public ResponseEntity<ApiResponseDto<Long>> signUp(@RequestBody SignUpRequestDto requestDto) {
         Long userId = userService.signUp(requestDto);
         return ResponseEntity.ok(ApiResponseDto.success(userId));
+    }
+
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponseDto<LoginResponseDto>> login(@RequestBody LoginRequestDto requestDto) {
+        String token = userService.login(requestDto);
+        return ResponseEntity.ok(ApiResponseDto.success(new LoginResponseDto(token)));
     }
 }
