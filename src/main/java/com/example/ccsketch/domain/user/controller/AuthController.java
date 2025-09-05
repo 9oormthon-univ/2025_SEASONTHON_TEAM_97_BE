@@ -1,5 +1,8 @@
 package com.example.ccsketch.domain.user.controller;
 
+import com.example.ccsketch.domain.user.dto.request.LoginRequestDto;
+import com.example.ccsketch.domain.user.dto.response.LoginResponseDto;
+import com.example.ccsketch.global.dto.ApiResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +24,17 @@ public class AuthController { // 클래스 분리 추천
 
     private final UserService userService;
 
-//    @Operation(summary = "회원가입")
-//    @PostMapping("/signup")
-//    public ResponseEntity<ApiResponseDto<Long>> signUp(@RequestBody SignUpRequestDto requestDto) {
-//        Long userId = userService.signUp(requestDto);
-//        return ResponseEntity.ok(ApiResponseDto.success(userId));
-//    }
+    @Operation(summary = "회원가입")
+    @PostMapping("/signup")
+    public ResponseEntity<ApiResponseDto<Long>> signUp(@RequestBody SignUpRequestDto requestDto) {
+        Long userId = userService.signUp(requestDto);
+        return ResponseEntity.ok(ApiResponseDto.success(userId));
+    }
+
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponseDto<LoginResponseDto>> login(@RequestBody LoginRequestDto requestDto) {
+        String token = userService.login(requestDto);
+        return ResponseEntity.ok(ApiResponseDto.success(new LoginResponseDto(token)));
+    }
 }
