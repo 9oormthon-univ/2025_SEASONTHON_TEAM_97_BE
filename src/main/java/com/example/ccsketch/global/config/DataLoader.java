@@ -28,7 +28,7 @@ public class DataLoader implements CommandLineRunner {
                     .name("테스트유저")
                     .birth(LocalDate.of(2000, 1, 1))
                     .location("서울")
-                    .organizationStatus("대학생")
+                    .organizationStatus(1)
                     .financialStatus(1)
                     .goal(1)
                     .build();

@@ -49,6 +49,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "build/libs/*.jar"
           target: "~/app"
+          strip_components: 2
 
       - name: Deploy and Restart Server
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

@@ -39,7 +39,7 @@ public class User {
     private String location;
 
     @Column(name = "organization_status", length = 11)
-    private String organizationStatus; // 컬럼명이 길어서 잘렸지만, 전체 이름을 사용
+    private Integer organizationStatus; // 컬럼명이 길어서 잘렸지만, 전체 이름을 사용
 
     @Column(name = "financial_status")
     private Integer financialStatus;
@@ -51,7 +51,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @Builder
-    public User(String loginId, String password, String name, LocalDate birth, String location, String organizationStatus, Integer financialStatus, Integer goal) {
+    public User(String loginId, String password, String name, LocalDate birth, String location, Integer organizationStatus, Integer financialStatus, Integer goal) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
