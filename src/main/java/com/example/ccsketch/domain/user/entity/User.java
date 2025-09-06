@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class) // JPA Auditing 활성화
-@Table(name = "users") // H2 예약어 충돌 방지를 위해 복수형 사용
+@Table(name = "Users") // H2 예약어 충돌 방지를 위해 복수형 사용
 public class User {
 
     @Id
@@ -38,7 +38,7 @@ public class User {
     @Column(length = 100)
     private String location;
 
-    @Column(name = "organization_status", length = 11)
+    @Column(name = "organization_status", length = 50)
     private String organizationStatus; // 컬럼명이 길어서 잘렸지만, 전체 이름을 사용
 
     @Column(name = "financial_status")
