@@ -15,7 +15,7 @@ public class UserGoalService {
     private final UserGoalRepository userGoalRepository;
 
     public List<String> getUserGoals(Long userId) {
-        return userGoalRepository.findByUserId(userId)
+        return userGoalRepository.findByUser_UserId(userId)
                 .stream()
                 .map(UserGoal::getGoalName)
                 .collect(Collectors.toList());

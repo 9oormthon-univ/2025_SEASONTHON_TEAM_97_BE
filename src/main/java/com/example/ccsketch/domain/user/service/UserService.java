@@ -80,7 +80,7 @@ public class UserService {
     // 현재 로그인한 유저의 Goal 리스트 가져오기
     public List<String> getCurrentUserGoals() {
         Long userId = getCurrentUserId();
-        List<UserGoal> goals = userGoalRepository.findByUserId(userId);
+        List<UserGoal> goals = userGoalRepository.findByUser_UserId(userId);
 
         // UserGoal 엔티티의 goalName 필드를 String 리스트로 변환
         return goals.stream()
