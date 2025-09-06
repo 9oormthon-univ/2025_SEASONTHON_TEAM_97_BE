@@ -1,8 +1,10 @@
 package com.example.ccsketch.domain.user.service;
 
+import com.example.ccsketch.domain.user.dto.request.LoginRequestDto;
 import com.example.ccsketch.domain.user.entity.User;
 import com.example.ccsketch.domain.user.dto.request.SignUpRequestDto;
 import com.example.ccsketch.domain.user.repository.UserRepository;
+import com.example.ccsketch.global.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
     public Long signUp(SignUpRequestDto requestDto) {
@@ -35,5 +38,17 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
         return savedUser.getUserId();
+    }
+
+    @Transactional(readOnly = true)
+    public String login(LoginRequestDto requestDto) {
+        User user = userRepository.findByLoginId(requestDto.getLoginId())
+                .orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다."));
+
+        if (!passwordEncoder.matches(requestDto.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("아이디 또는 비밀번호가 올바르지 않습니다.");
+        }
+
+        return jwtTokenProvider.createToken(user.getLoginId());
     }
 }
