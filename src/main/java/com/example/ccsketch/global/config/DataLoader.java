@@ -27,7 +27,7 @@ public class DataLoader implements CommandLineRunner {
                     .password(passwordEncoder.encode("password123"))
                     .name("테스트유저")
                     .birth(LocalDate.of(2000, 1, 1))
-                    .location("서울")
+                    .location(11000)
                     .organizationStatus(1)
                     .financialStatus(1)
                     .goal(1)

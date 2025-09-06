@@ -11,6 +11,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,22 +38,23 @@ public class User {
     private LocalDate birth; // DB의 DATE 타입과 매핑
 
     @Column(length = 100)
-    private String location;
+    private Integer location;
 
-    @Column(name = "organization_status", length = 11)
-    private Integer organizationStatus; // 컬럼명이 길어서 잘렸지만, 전체 이름을 사용
+    @Column(name = "organization_status")
+    private int organizationStatus; // 컬럼명이 길어서 잘렸지만, 전체 이름을 사용
 
     @Column(name = "financial_status")
     private Integer financialStatus;
 
-    private Integer goal;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserGoal> goals = new ArrayList<>();
 
     @CreatedDate // 엔티티 생성 시 자동으로 현재 시간 저장
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @Builder
-    public User(String loginId, String password, String name, LocalDate birth, String location, Integer organizationStatus, Integer financialStatus, Integer goal) {
+    public User(String loginId, String password, String name, LocalDate birth, int location, int organizationStatus, Integer financialStatus, Integer goal) {
         this.loginId = loginId;
         this.password = password;
         this.name = name;
@@ -59,6 +62,5 @@ public class User {
         this.location = location;
         this.organizationStatus = organizationStatus;
         this.financialStatus = financialStatus;
-        this.goal = goal;
     }
 }
