@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class) // JPA Auditing 활성화
-@Table(name = "users") // H2 예약어 충돌 방지를 위해 복수형 사용
+@Table(name = "Users") // H2 예약어 충돌 방지를 위해 복수형 사용
 public class User {
 
     @Id
