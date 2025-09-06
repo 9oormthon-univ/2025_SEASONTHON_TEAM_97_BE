@@ -11,8 +11,8 @@ public class SignUpRequestDto {
     private String password;
     private String name;
     private LocalDate birth;
-    private String location;
-    private String organizationStatus;
+    private Integer location;
+    private Integer organizationStatus;
     private Integer financialStatus;
     private Integer goal;
 }
