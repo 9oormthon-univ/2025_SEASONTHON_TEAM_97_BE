@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByLoginId(String loginId); // 이 메소드로 변경 또는 추가
 
-    List<Integer> findUser(Long userId);
 }
